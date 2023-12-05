@@ -63,3 +63,5 @@
 			    (convert 'light-to-temperature)
 			    (convert 'temperature-to-humidity)
 			    (convert 'humidity-to-location))))))
+
+(part1 "./input.txt")
