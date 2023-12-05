@@ -16,7 +16,7 @@
 (defun dist (src from-src from-dest range)
   (let ((dist (if (> from-src from-dest)
 		  (- from-dest from-src)
-		  (abs (- from-dest from-src)))))
+		  (- from-dest from-src))))
     (+ src dist)))
 
 (defun conversion (src specs)
