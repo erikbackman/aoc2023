@@ -20,28 +20,27 @@
 	finally (return src)))
 
 (defun parse-input (file-path)
-  (let ((seeds '())
-	(map-data (make-hash-table)))
-    (with-open-file (stream file-path)
-      (do ((line (read-line stream nil)
-		 (read-line stream nil))
-	   (read-map nil))
-	  ((null line) seeds)
+  (with-open-file (stream file-path)
+    (do ((line (read-line stream nil)
+	       (read-line stream nil))
+	 (seeds '())
+	 (map-data (make-hash-table))
+	 (read-map nil))
+	((null line) (list seeds map-data))
 
-	(cond
-	  ((uiop:string-prefix-p "seeds:" line)
-	   (setf seeds (mapcar 'read-from-string (ppcre:split " " (subseq line 7)))))
+      (cond
+	((uiop:string-prefix-p "seeds:" line)
+	 (setf seeds (mapcar 'read-from-string (ppcre:split " " (subseq line 7)))))
 
-	  ((uiop:emptyp line)
-	   (setf read-map nil))
-	  
-	  ((uiop:string-suffix-p line "map:")
-	   (setf read-map (subseq line 0 (- (length line) 5))))
+	((uiop:emptyp line)
+	 (setf read-map nil))
+	
+	((uiop:string-suffix-p line "map:")
+	 (setf read-map (subseq line 0 (- (length line) 5))))
 
-	  (read-map
-	   (push (mapcar 'read-from-string (ppcre:split " " line))
-		 (gethash (read-from-string read-map) map-data))))))
-    (list seeds map-data)))
+	(read-map
+	 (push (mapcar 'read-from-string (ppcre:split " " line))
+	       (gethash (read-from-string read-map) map-data)))))))
 
 ;; Part 1
 (defun part1 (input-path)
