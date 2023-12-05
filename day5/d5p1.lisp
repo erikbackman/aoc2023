@@ -14,10 +14,7 @@
   (and (>= x a) (<= x b)))
 
 (defun dist (src from-src from-dest range)
-  (let ((dist (if (> from-src from-dest)
-		  (- from-dest from-src)
-		  (- from-dest from-src))))
-    (+ src dist)))
+  (+ src (- from-dest from-src)))
 
 (defun conversion (src specs)
   (loop for (fd fs r) in specs
@@ -65,3 +62,4 @@
 			    (convert 'humidity-to-location))))))
 
 (part1 "./input.txt")
+;; 389056265
