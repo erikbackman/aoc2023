@@ -26,9 +26,6 @@
 	  return (dist src fs fd r)
 	finally (return src)))
 
-(defun convert (type value)
-  (conversion value (gethash type *h*)))
-
 (defun parse-input (file-path)
   (let ((seeds '())
 	(map-data (make-hash-table)))
