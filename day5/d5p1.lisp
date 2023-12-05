@@ -13,13 +13,10 @@
 (defun in-range (x a b)
   (and (>= x a) (<= x b)))
 
-(defun dist (src from-src from-dest range)
-  (+ src (- from-dest from-src)))
-
 (defun conversion (src specs)
   (loop for (fd fs r) in specs
 	when (in-range src fs (+ fs (- r 1)))
-	  return (dist src fs fd r)
+	  return (+ src (- fd fs))
 	finally (return src)))
 
 (defun parse-input (file-path)
