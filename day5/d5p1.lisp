@@ -1,3 +1,5 @@
+(ql:quickload :cl-ppcre)
+
 ;; Macro for nicer syntax
 (defmacro ->> (value &optional form &rest more)
   (cond
@@ -64,5 +66,3 @@
 			    (convert 'light-to-temperature)
 			    (convert 'temperature-to-humidity)
 			    (convert 'humidity-to-location))))))
-
-(part1 "/home/ebn/src/aoc2023/day5/input.txt")
