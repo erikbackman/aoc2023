@@ -20,10 +20,7 @@
     (+ src dist)))
 
 (defun conversion (src specs)
-  (loop for spec in specs
-	for fd = (nth 0 spec)
-	for fs = (nth 1 spec)
-	for r  = (nth 2 spec)
+  (loop for (fd fs r) in specs
 	when (in-range src fs (+ fs (- r 1)))
 	  return (dist src fs fd r)
 	finally (return src)))
